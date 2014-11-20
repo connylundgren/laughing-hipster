@@ -13,14 +13,22 @@ public class FootyService {
 
     @Autowired
     private RestTemplateBean restTemplateBean;
+    private String baseUrl = "http://api.openfooty.org/1.0/";
+    private String apiKeyPara = "?api_key=56766b4eba61f002fb7a09dcea173f83&format=json";
 
-    private String requestUrl= "http://api.openfooty.org/1.0/league.getResults?api_key=56766b4eba61f002fb7a09dcea173f83&league_id=1&format=json";
-
-    public String test(){
+    public String getInjuredPlayersByLeague(int leagueId){
         try {
-            return restTemplateBean.getObject().exchange(requestUrl, HttpMethod.GET, null, String.class).getBody();
+            return restTemplateBean.getObject().exchange(baseUrl + "league.getInjuredPlayers" + apiKeyPara + "&league_id=" + leagueId, HttpMethod.GET, null, String.class).getBody();
         } catch (Exception e) {
 
+        }
+        return "";
+    }
+
+    public String getLeagues() {
+        try {
+            return restTemplateBean.getObject().exchange(baseUrl + "league.getIdents" + apiKeyPara, HttpMethod.GET, null, String.class).getBody();
+        } catch (Exception e) {
         }
         return "";
     }
