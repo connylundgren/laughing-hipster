@@ -45,6 +45,19 @@ public class EndPointController {
             }
             methodList.methods.add(methodContainer);
         }
+
+        c = TeamRestController.class;
+        methods = c.getDeclaredMethods();
+        for (Method method : methods) {
+            MethodContainer methodContainer = new MethodContainer();
+            methodContainer.name = method.getName();
+            methodContainer.params = new ArrayList<String>();
+            Parameter[] parameters = method.getParameters();
+            for (Parameter parameter : parameters) {
+                methodContainer.params.add(parameter.getType().getSimpleName() + ' ' + parameter.getName());
+            }
+            methodList.methods.add(methodContainer);
+        }
         return gson.toJson(methodList);
     }
 }
