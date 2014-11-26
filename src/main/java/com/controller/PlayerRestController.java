@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.service.FootyPlayerService;
+import com.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/player")
 public class PlayerRestController {
     @Autowired
-    FootyPlayerService service;
+    PlayerService service;
 
     @RequestMapping("/footy/dream/stats")
     public String getDreamFootyStats(@RequestParam int playerId){

@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.service.FootyTeamService;
+import com.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TeamRestController {
 
     @Autowired
-    FootyTeamService service;
+    TeamService service;
     
     @RequestMapping("/badge")
     public String getBadge(@RequestParam int teamId){

@@ -14,7 +14,7 @@ import java.util.Map;
  */
 //TODO Cache lager
 @Component
-public class SpringClient {
+public class SpringService {
     @Autowired
     private RestTemplateBean restTemplateBean;
     private LinkedHashMap<String, String> lolCache = new LinkedHashMap<String, String>();
