@@ -32,22 +32,25 @@ public class EndPointController {
     @RequestMapping("/")
     public String index() {
         Class c = LeagueRestController.class;
-        Method[] methods = c.getDeclaredMethods();
         MethodList methodList = new MethodList();
         methodList.methods = new ArrayList<MethodContainer>();
-        for (Method method : methods) {
-            MethodContainer methodContainer = new MethodContainer();
-            methodContainer.name = method.getName();
-            methodContainer.params = new ArrayList<String>();
-            Parameter[] parameters = method.getParameters();
-            for (Parameter parameter : parameters) {
-                methodContainer.params.add(parameter.getType().getSimpleName() + ' ' + parameter.getName());
-            }
-            methodList.methods.add(methodContainer);
-        }
+
+        Method[] methods = c.getDeclaredMethods();
+        getParamMap(methods, methodList);
 
         c = TeamRestController.class;
         methods = c.getDeclaredMethods();
+        getParamMap(methods, methodList);
+
+        c = PlayerRestController.class;
+        methods = c.getDeclaredMethods();
+        getParamMap(methods, methodList);
+
+
+        return gson.toJson(methodList);
+    }
+
+    private void getParamMap(Method[] methods, MethodList methodList) {
         for (Method method : methods) {
             MethodContainer methodContainer = new MethodContainer();
             methodContainer.name = method.getName();
@@ -58,7 +61,6 @@ public class EndPointController {
             }
             methodList.methods.add(methodContainer);
         }
-        return gson.toJson(methodList);
     }
 }
 

@@ -19,7 +19,7 @@ public class FootyLeagueService {
     private String apiKeyPara = "?api_key=56766b4eba61f002fb7a09dcea173f83&format=json";
 
     public String getLeagueInjuredPlayers(int leagueId){
-        return springClient.exchange(baseUrl + "getInjuredPlayers" + apiKeyPara + "&id=" + leagueId, String.class);
+        return springClient.exchange(baseUrl + "getInjuredPlayers" + apiKeyPara + "&league_id=" + leagueId, String.class);
     }
 
     public String getLeagues() {
